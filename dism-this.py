@@ -3,10 +3,14 @@
 # dism-this.py is a script that analyzes data for the possible detection of shellcode or instructions.  
 # Written by alexander dot hanel at gmail dot com	
 
-import pydasm
 import re
 import sys	
 from optparse import OptionParser
+try:
+	import pydasm
+except ImportError:
+	print "Error: Pydasm Can Not be Found"
+	sys.exit()
 
 class CKASM():
 	def __init__(self):
