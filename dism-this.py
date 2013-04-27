@@ -3,9 +3,10 @@
 # Name: 
 #   dism-this.py
 # Version: 
-#    0.2
+#    0.3
 # New:
-#   added support for export/carving shellcode 
+#   0.2 - added support for export/carving shellcode
+#   0.3 - fixed segment string parsing bug. Reported by Lenny Zeltser.  
 # Description: 
 #    dism-this.py is a script that analyzes data for the possible detection of shellcode or instructions.      
 # Author
@@ -125,7 +126,8 @@ class CKASM():
 
     def segmentCheck(self,line):
         for seg in self.segment:
-            if seg in line[0:3]:
+	    segs = str(seg + ':')
+            if segs in line:
                 self.segmentCount += 1
                 
     def outcast(self,line):
